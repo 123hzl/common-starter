@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-package com.hzl.cloud.config.mybatis;
+package com.hzl.hadoop.config.mybatis;
 
-import tk.mybatis.mapper.common.Mapper;
-import tk.mybatis.mapper.common.MySqlMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
 
 /**
  * 继承自己的BaseMapper
@@ -33,7 +33,6 @@ import tk.mybatis.mapper.common.MySqlMapper;
  * @author liuzh
  * @since 2015-09-06 21:53
  */
-public interface BaseMapperUtil<T> extends Mapper<T>, MySqlMapper<T> {
-    //TODO
-    //FIXME 特别注意，该接口不能被扫描到，否则会出错
+public interface BaseMapperUtil<T> extends BaseMapper<T> {
+
 }
