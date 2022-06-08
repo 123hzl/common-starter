@@ -33,7 +33,8 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
 	public void updateFill(MetaObject metaObject) {
 		this.strictInsertFill(metaObject, "updateTime", () -> LocalDateTime.now(), LocalDateTime.class);
 
-		this.strictInsertFill(metaObject, "versionNum", Integer.class, 0);
+		//版本号自动加1
+		this.strictInsertFill(metaObject, "versionNum", Integer.class, ((Integer) metaObject.getValue("versionNum"))+1);
 
 		this.strictInsertFill(metaObject, "updateBy", Long.class, 0L);
 

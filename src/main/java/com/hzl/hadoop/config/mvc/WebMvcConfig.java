@@ -8,10 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.servlet.config.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -134,5 +132,22 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
 
 		//5.将convert添加到converters当中.
 		converters.add(fastJsonHttpMessageConverter);
+	}
+
+	/**
+	 *
+	 * 配置静态资源加载 例如css,js
+	 * 不然freemarket映射的html无法加载代码中的css
+	 * @author hzl 2022-06-07 3:06 PM
+	 * @return
+	 */
+	@Override
+	protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+		//html中使用地址/css/** 会映射到项目/static/css文件夹下面
+		registry.addResourceHandler("/css/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/css/");
+		registry.addResourceHandler("/img/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/img/");
+		registry.addResourceHandler("/js/**").addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX + "/static/js/");
+
+		super.addResourceHandlers(registry);
 	}
 }
