@@ -2,6 +2,7 @@ package com.hzl.hadoop.config.mybatis;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.Version;
 
 import java.time.LocalDateTime;
 
@@ -40,6 +41,7 @@ public class BaseEntity {
 	 * 版本号
 	 */
 	@TableField(fill = FieldFill.INSERT_UPDATE)
+	@Version
 	private Integer versionNum;
 
 	public Long getTenantId() {
